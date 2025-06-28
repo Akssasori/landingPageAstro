@@ -15,8 +15,7 @@ for (let i = 0; i < totalSlides; i++) {
 
 function updateCarousel() {
     track.style.transform = `translateX(-${currentSlide * 100}%)`;
-    
-    // Update dots
+
     document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
         dot.classList.toggle('active', index === currentSlide);
     });
@@ -37,9 +36,9 @@ function goToSlide(slideIndex) {
 // Auto-play carousel
 setInterval(() => {
     moveCarousel(1);
-}, 5000);
+}, 6000);
 
-// Smooth scrolling for navigation
+// Smooth scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -54,11 +53,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -66,9 +60,8 @@ const observer = new IntersectionObserver((entries) => {
             entry.target.style.transform = 'translateY(0)';
         }
     });
-}, observerOptions);
+}, { threshold: 0.1 });
 
-// Observe all fade-in-up elements
 document.querySelectorAll('.fade-in-up').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
@@ -79,11 +72,11 @@ document.querySelectorAll('.fade-in-up').forEach(el => {
 // Header scroll effect
 window.addEventListener('scroll', () => {
     const header = document.querySelector('header');
-    if (window.scrollY > 100) {
+    if (window.scrollY > 50) {
         header.style.background = 'rgba(255, 255, 255, 0.95)';
-        header.style.backdropFilter = 'blur(15px)';
+        header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
     } else {
-        header.style.background = 'linear-gradient(135deg, rgba(218, 165, 32, 0.1), rgba(255, 255, 255, 0.9))';
-        header.style.backdropFilter = 'blur(10px)';
+        header.style.background = 'rgba(255, 255, 255, 0.8)';
+        header.style.boxShadow = 'none';
     }
-})
+});
