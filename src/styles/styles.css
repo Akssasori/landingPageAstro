@@ -134,6 +134,7 @@
   .floating-element {
     position: absolute;
     animation: float 6s ease-in-out infinite;
+    font-size: 2rem;
   }
 
   .floating-element:nth-child(1) {
