@@ -14,8 +14,11 @@ for (let i = 0; i < totalSlides; i++) {
 }
 
 function updateCarousel() {
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
-
+    // Ensure precise positioning with exact pixel calculation
+    const slideWidth = track.clientWidth;
+    track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+    
+    // Update active dot indicator
     document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
         dot.classList.toggle('active', index === currentSlide);
     });
@@ -32,6 +35,9 @@ function goToSlide(slideIndex) {
     currentSlide = slideIndex;
     updateCarousel();
 }
+
+// Initialize carousel
+updateCarousel();
 
 // Auto-play carousel
 setInterval(() => {
@@ -79,4 +85,9 @@ window.addEventListener('scroll', () => {
         header.style.background = 'rgba(255, 255, 255, 0.8)';
         header.style.boxShadow = 'none';
     }
+});
+
+// Ensure carousel updates on window resize
+window.addEventListener('resize', () => {
+    updateCarousel();
 });

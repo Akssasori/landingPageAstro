@@ -126,7 +126,8 @@
 
   .hero-image {
     position: relative;
-    max-width: 500px;
+    max-width: 600px;
+    height: 200px;
     margin: 0 auto;
     perspective: 1000px;
   }
@@ -134,24 +135,24 @@
   .floating-element {
     position: absolute;
     animation: float 6s ease-in-out infinite;
-    font-size: 2rem;
+    font-size: 4rem;
   }
 
   .floating-element:nth-child(1) {
     top: 10%;
-    left: -10%;
+    left: -15%;
     animation-delay: 0s;
   }
 
   .floating-element:nth-child(2) {
     top: 20%;
-    right: -15%;
+    right: -20%;
     animation-delay: 2s;
   }
 
   .floating-element:nth-child(3) {
-    bottom: 30%;
-    left: -5%;
+    bottom: -20%;
+    left: -10%;
     animation-delay: 4s;
   }
 
@@ -220,16 +221,21 @@
   .carousel-track {
     display: flex;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    flex-wrap: nowrap;
   }
 
   .carousel-slide {
     min-width: 100%;
+    width: 100%;
+    flex: 0 0 100%;
     position: relative;
     background: linear-gradient(135deg, #fdf2f8, #f8fafc);
     padding: 60px;
     display: flex;
     align-items: center;
     gap: 60px;
+    box-sizing: border-box;
   }
 
   .slide-content {
