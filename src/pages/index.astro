@@ -1,15 +1,22 @@
-import '../styles/style.css';
-<html lang="pt-BR">
+---
+// 1. O CSS é importado aqui dentro do frontmatter
+import '../styles/styles.css';
 
+// Nota: Se um dia você quiser usar as imagens de 'src/assets',
+// você as importaria aqui também, assim:
+// import astroLogo from '../assets/astro.svg';
+// E no HTML usaria: <img src={astroLogo.src} />
+---
+
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PiplokITA - Pipoca Gourmet Premium</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="/src/styles/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- A tag <link> para o seu CSS foi removida, pois o 'import' acima já cuida disso -->
 </head>
 
 <body>
@@ -64,6 +71,7 @@ import '../styles/style.css';
 
         <div class="carousel-container">
           <div class="carousel-track" id="carouselTrack">
+            <!-- Seus slides do carrossel continuam aqui, sem alterações -->
             <div class="carousel-slide">
               <div class="slide-content">
                 <h3 class="slide-title">Kit Premium Degustação</h3>
@@ -140,10 +148,11 @@ import '../styles/style.css';
             </div>
           </div>
 
-          <button class="carousel-nav carousel-prev" onclick="moveCarousel(-1)">
+          <!-- Botões sem 'onclick' e com 'id' -->
+          <button id="carouselPrev" class="carousel-nav carousel-prev">
             <i class="fas fa-chevron-left"></i>
           </button>
-          <button class="carousel-nav carousel-next" onclick="moveCarousel(1)">
+          <button id="carouselNext" class="carousel-nav carousel-next">
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
@@ -151,6 +160,7 @@ import '../styles/style.css';
       </div>
     </section>
 
+    <!-- O resto do seu HTML (features, cta, social, footer) continua aqui sem alterações -->
     <section class="features-section" id="sobre">
       <div class="container">
         <div class="section-header">
@@ -231,9 +241,9 @@ import '../styles/style.css';
     </div>
   </footer>
 
+  <!-- A importação do script está correta e continua aqui -->
   <script>
     import "../scripts/main.js";
   </script>
 </body>
-
 </html>

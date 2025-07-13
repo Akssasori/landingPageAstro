@@ -1,3 +1,15 @@
+// Seleciona os botões do carrossel
+const prevButton = document.getElementById('carouselPrev');
+const nextButton = document.getElementById('carouselNext');
+
+// Adiciona os "escutadores de evento"
+if (prevButton) {
+  prevButton.addEventListener('click', () => moveCarousel(-1));
+}
+if (nextButton) {
+  nextButton.addEventListener('click', () => moveCarousel(1));
+}
+
 let currentSlide = 0;
 const slides = document.querySelectorAll('.carousel-slide');
 const totalSlides = slides.length;
@@ -5,15 +17,18 @@ const track = document.getElementById('carouselTrack');
 const dotsContainer = document.getElementById('carouselDots');
 
 // Create dots
-for (let i = 0; i < totalSlides; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'carousel-dot';
-    if (i === 0) dot.classList.add('active');
-    dot.addEventListener('click', () => goToSlide(i));
-    dotsContainer.appendChild(dot);
+if (dotsContainer) {
+  for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot';
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+  }
 }
 
 function updateCarousel() {
+    if (!track) return; // Garante que o script não quebre se o elemento não existir
     // Ensure precise positioning with exact pixel calculation
     const slideWidth = track.clientWidth;
     track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
@@ -37,7 +52,9 @@ function goToSlide(slideIndex) {
 }
 
 // Initialize carousel
-updateCarousel();
+if (totalSlides > 0) {
+  updateCarousel();
+}
 
 // Auto-play carousel
 setInterval(() => {
@@ -78,16 +95,20 @@ document.querySelectorAll('.fade-in-up').forEach(el => {
 // Header scroll effect
 window.addEventListener('scroll', () => {
     const header = document.querySelector('header');
-    if (window.scrollY > 50) {
-        header.style.background = 'rgba(255, 255, 255, 0.95)';
-        header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
-    } else {
-        header.style.background = 'rgba(255, 255, 255, 0.8)';
-        header.style.boxShadow = 'none';
+    if (header) {
+      if (window.scrollY > 50) {
+          header.style.background = 'rgba(255, 255, 255, 0.95)';
+          header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+      } else {
+          header.style.background = 'rgba(255, 255, 255, 0.8)';
+          header.style.boxShadow = 'none';
+      }
     }
 });
 
 // Ensure carousel updates on window resize
 window.addEventListener('resize', () => {
-    updateCarousel();
+    if (totalSlides > 0) {
+      updateCarousel();
+    }
 });
